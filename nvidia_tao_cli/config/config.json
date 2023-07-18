@@ -1,0 +1,111 @@
+{
+    "task_group": {
+        "model": {
+            "dockers": {
+                "nvidia/tao/tao-toolkit": {
+                    "5.0.0-tf2.11.0": {
+                        "docker_registry": "nvcr.io",
+                        "tasks": [
+                            "classification_tf2",
+                            "efficientdet_tf2"
+                        ]
+                    },
+                    "5.0.0-tf1.15.5": {
+                        "docker_registry": "nvcr.io",
+                        "tasks": [
+                            "bpnet",
+                            "classification_tf1",
+                            "converter",
+                            "detectnet_v2",
+                            "dssd",
+                            "efficientdet_tf1",
+                            "faster_rcnn",
+                            "fpenet",
+                            "lprnet",
+                            "mask_rcnn",
+                            "multitask_classification",
+                            "retinanet",
+                            "ssd",
+                            "unet",
+                            "yolo_v3",
+                            "yolo_v4",
+                            "yolo_v4_tiny"
+                        ]
+                    },
+                    "5.0.0-pyt": {
+                        "docker_registry": "nvcr.io",
+                        "tasks": [
+                            "action_recognition",
+                            "classification_pyt",
+                            "deformable_detr",
+                            "dino",
+                            "mal",
+                            "ml_recog",
+                            "ocdnet",
+                            "ocrnet",
+                            "optical_inspection",
+                            "pointpillars",
+                            "pose_classification",
+                            "re_identification",
+                            "segformer"
+                        ]
+                    }
+                }
+            }
+        },
+        "dataset": {
+            "dockers": {
+                "nvidia/tao/tao-toolkit": {
+                    "5.0.0-data-services": {
+                        "docker_registry": "nvcr.io",
+                        "tasks": [
+                            "augmentation",
+                            "auto_label",
+                            "annotations",
+                            "analytics"
+                        ]
+                    }
+                }
+            }
+        },
+        "deploy": {
+            "dockers": {
+                "nvidia/tao/tao-toolkit": {
+                    "5.0.0-deploy": {
+                        "docker_registry": "nvcr.io",
+                        "tasks": [
+                            "classification_pyt",
+                            "classification_tf1",
+                            "classification_tf2",
+                            "deformable_detr",
+                            "detectnet_v2",
+                            "dino",
+                            "dssd",
+                            "efficientdet_tf1",
+                            "efficientdet_tf2",
+                            "faster_rcnn",
+                            "lprnet",
+                            "mask_rcnn",
+                            "ml_recog",
+                            "multitask_classification",
+                            "ocdnet",
+                            "ocrnet",
+                            "optical_inspection",
+                            "retinanet",
+                            "segformer",
+                            "ssd",
+                            "trtexec",
+                            "unet",
+                            "yolo_v3",
+                            "yolo_v4",
+                            "yolo_v4_tiny"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "format_version": 3.0,
+    "toolkit_version": "5.0.0",
+    "published_date": "07/14/2023"
+}

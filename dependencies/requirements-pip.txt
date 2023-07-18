@@ -1,0 +1,10 @@
+certifi>=2022.12.07
+chardet==3.0.4
+docker==4.3.1
+docker-pycreds==0.4.0
+idna==2.10
+requests>=2.31.0
+six==1.15.0
+tabulate==0.8.7
+urllib3>=1.26.15, <2.0.0
+websocket-client==0.57.0
