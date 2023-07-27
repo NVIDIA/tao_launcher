@@ -3,8 +3,6 @@
 This project contains the source code to the TAO launcher interface. This launcher interface aims at providing a unified command line experience to the Transfer Learning Toolkit package.
 The DNN's in TAO may be implemented in TensorFlow, Keras or PyTorch. These frameworks are difficult to maintain in the same docker. In an attempt to abstract the final customers of TAO, to handle tao command abstracts these details away from the user.
 
-- [Working with the launcher](docs/working_with_the_launcher.md)
-- [Developer instructions](docs/developer_instructions.md)
 - [Quick Start Guide](#quick-start-guide)
   - [Software Requirements](#software-requirements)
   - [Installation instructions](#installation-instructions)
@@ -34,41 +32,26 @@ This section covers a quick guide to start working with the launcher.
 
 2. Install nvidia-container-toolkit by following these [installation instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html).
 
-3. Login to the NGC staging area docker registry using the api key generated from `stg.ngc.nvidia.com`
+3. Login to the NGC staging area docker registry using the api key generated from `ngc.nvidia.com`
 
 ```sh
-docker login stg.nvcr.io
+docker login nvcr.io
 ```
 
 4. The TAO Launcher can be installed using the wheel from the [google drive](https://drive.google.com/drive/u/1/folders/1-r-Tq6vgyVnb1YsZppteCu9M-zss0Xcs) 
 with the command mentioned below. We highly recommend using [python virtualenv](https://python-guide-cn.readthedocs.io/en/latest/dev/virtualenvs.html) to isolate your python env.
 
 ```sh
-pip install nvidia_tao.0.0.9.dev0-py3x-none-any.whl
+pip install nvidia_tao.5.0.0-py3-none-any.whl
 ```
 
   Where x is the minor version of the python installed in your PC.
 
-5. Initialize the launcher using `tao init`.
-
-``` {ignore}
-2020-11-25 14:07:54,322 [WARNING] __main__: 
-
-************************************************************************************************************************************************************
-A config file wasn't found to initialize a TAO instance. Please run the tao init command to get the config file and configure the DL tasks available in TAO.
-************************************************************************************************************************************************************
-
-2020-11-25 14:07:54,325 [INFO] tao.components.instance_handler.utils: Downloading the latest config file.
-2020-11-25 14:07:54,459 [INFO] tao.components.instance_handler.utils: Download complete. Validating the file.
-```
-
 6. Run the tao tasks using the changed tao cli structure.
 
 ```sh
-tao <task> <sub-task> <cli-args>
+tao <task_group> <task> <sub-task> <cli-args>
 ```
-
-For detailed instructions on using the launcher, please navigate to this [page](docs/working_with_the_launcher.md).
 
 ## <a name='license'></a>License
 
