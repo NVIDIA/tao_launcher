@@ -38,14 +38,12 @@ This section covers a quick guide to start working with the launcher.
 docker login nvcr.io
 ```
 
-4. The TAO Launcher can be installed using the wheel from the [google drive](https://drive.google.com/drive/u/1/folders/1-r-Tq6vgyVnb1YsZppteCu9M-zss0Xcs) 
-with the command mentioned below. We highly recommend using [python virtualenv](https://python-guide-cn.readthedocs.io/en/latest/dev/virtualenvs.html) to isolate your python env.
+4. To install the launcher, please run the following command from the root of the repo.
 
-```sh
-pip install nvidia_tao.5.0.0-py3-none-any.whl
+```py
+export PYTHONPATH=${PWD}:${PYTHONPATH}
+python release/tao/setup.py develop
 ```
-
-  Where x is the minor version of the python installed in your PC.
 
 6. Run the tao tasks using the changed tao cli structure.
 
