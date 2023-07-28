@@ -45,6 +45,8 @@ export PYTHONPATH=${PWD}:${PYTHONPATH}
 python release/tao/setup.py develop
 ```
 
+Add the `--user` flag to the setup.py script, if you would like to install it locally to your user.
+
 6. Run the tao tasks using the changed tao cli structure.
 
 ```sh
