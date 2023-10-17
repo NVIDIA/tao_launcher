@@ -36,7 +36,6 @@
                         "docker_registry": "nvcr.io",
                         "tasks": [
                             "action_recognition",
-                            "classification_pyt",
                             "deformable_detr",
                             "dino",
                             "mal",
@@ -48,6 +47,13 @@
                             "pose_classification",
                             "re_identification",
                             "segformer"
+                        ]
+                    },
+                    "5.1.0-pyt": {
+                        "docker_registry": "nvcr.io",
+                        "tasks": [
+                            "classification_pyt",
+                            "visual_changenet"
                         ]
                     }
                 }
@@ -74,7 +80,6 @@
                     "5.0.0-deploy": {
                         "docker_registry": "nvcr.io",
                         "tasks": [
-                            "classification_pyt",
                             "classification_tf1",
                             "classification_tf2",
                             "deformable_detr",
@@ -100,12 +105,20 @@
                             "yolo_v4",
                             "yolo_v4_tiny"
                         ]
+                    },
+                    "5.1.0-deploy": {
+                        "docker_registry": "nvcr.io",
+                        "tasks": [
+                            "classification_pyt",
+                            "visual_changenet"
+                        ]
                     }
                 }
             }
         }
     },
     "format_version": 3.0,
-    "toolkit_version": "5.0.0",
-    "published_date": "07/14/2023"
+    "toolkit_version": "5.1.0",
+    "published_date": "10/10/2023"
 }
+
