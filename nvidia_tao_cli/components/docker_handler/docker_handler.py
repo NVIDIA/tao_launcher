@@ -27,6 +27,7 @@ import sys
 import subprocess
 
 import docker
+from rich.progress import Progress
 from tabulate import tabulate
 
 DOCKER_COMMAND = "docker"
@@ -35,6 +36,8 @@ VALID_PORT_PROTOCOLS = ["tcp", "udp", "sctp"]
 VALID_DOCKER_ARGS = ["user", "ports", "shm_size", "ulimits", "privileged", "network", "tty"]
 
 logger = logging.getLogger(__name__)
+
+TASKS = {}
 
 
 def get_default_mountsfile():
@@ -48,6 +51,21 @@ def get_default_mountsfile():
         )
         default_mounts = "~/.tao_mounts.json"
     return default_mounts
+
+
+def docker_pull_progress(line, progress):
+    """Simple function to visualize a docker pull."""
+    if line['status'] == 'Downloading':
+        idx = f'[red][Download {line["id"]}]'
+    elif line['status'] == 'Extracting':
+        idx = f'[green][Extract  {line["id"]}]'
+    else:
+        # skip other statuses
+        return
+    if idx not in TASKS.keys():
+        TASKS[idx] = progress.add_task(f"{idx}", total=line['progressDetail']['total'])
+    else:
+        progress.update(TASKS[idx], completed=line['progressDetail']['current'])
 
 
 DOCKER_MOUNT_FILE = get_default_mountsfile()
@@ -158,7 +176,15 @@ class DockerHandler(object):
         try:
             repository = "{}/{}".format(self._docker_registry, self._image_name)
             print("Pulling from repository: {}".format(repository))
-            self._api_client.pull(repository=repository, tag=self._docker_tag)
+            with Progress() as progress:
+                response = self._api_client.pull(
+                    repository=repository,
+                    tag=self._docker_tag,
+                    stream=True,
+                    decode=True
+                )
+                for line in response:
+                    docker_pull_progress(line, progress)
         except docker.errors.APIError as e:
             print("Docker pull failed. {}".format(e))
             sys.exit(1)

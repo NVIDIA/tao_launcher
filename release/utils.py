@@ -23,7 +23,7 @@ import os
 
 def get_long_description(root):
     """Get the long description for the launcher wheel."""
-    long_desc_file = os.path.join(root, "tao_pypi_description.md")
+    long_desc_file = os.path.join(root, "tlt_pypi_description.md")
     with open(long_desc_file, "r") as lfile:
         data = lfile.read()
     return data

@@ -3,7 +3,7 @@
         "model": {
             "dockers": {
                 "nvidia/tao/tao-toolkit": {
-                    "5.0.0-tf2.11.0": {
+                    "5.5.0-tf2": {
                         "docker_registry": "nvcr.io",
                         "tasks": [
                             "classification_tf2",
@@ -32,13 +32,17 @@
                             "yolo_v4_tiny"
                         ]
                     },
-                    "5.3.0-pyt": {
+                    "5.5.0-pyt": {
                         "docker_registry": "nvcr.io",
                         "tasks": [
                             "action_recognition",
                             "centerpose",
+                            "visual_changenet",
                             "deformable_detr",
                             "dino",
+                            "grounding_dino",
+                            "mask_grounding_dino",
+                            "mask2former",
                             "mal",
                             "ml_recog",
                             "ocdnet",
@@ -47,9 +51,9 @@
                             "pointpillars",
                             "pose_classification",
                             "re_identification",
-                            "visual_changenet",
                             "classification_pyt",
-                            "segformer"
+                            "segformer",
+                            "bevfusion"
                         ]
                     }
                 }
@@ -58,7 +62,7 @@
         "dataset": {
             "dockers": {
                 "nvidia/tao/tao-toolkit": {
-                    "5.3.0-data-services": {
+                    "5.5.0-data-services": {
                         "docker_registry": "nvcr.io",
                         "tasks": [
                             "augmentation",
@@ -73,7 +77,7 @@
         "deploy": {
             "dockers": {
                 "nvidia/tao/tao-toolkit": {
-                    "5.3.0-deploy": {
+                    "5.5.0-deploy": {
                         "docker_registry": "nvcr.io",
                         "tasks": [
                             "visual_changenet",
@@ -88,6 +92,9 @@
                             "efficientdet_tf1",
                             "efficientdet_tf2",
                             "faster_rcnn",
+                            "grounding_dino",
+                            "mask_grounding_dino",
+                            "mask2former",
                             "lprnet",
                             "mask_rcnn",
                             "ml_recog",
@@ -103,6 +110,7 @@
                             "yolo_v3",
                             "yolo_v4",
                             "yolo_v4_tiny"
+
                         ]
                     }
                 }
@@ -113,4 +121,3 @@
     "toolkit_version": "5.3.0",
     "published_date": "03/14/2024"
 }
-
