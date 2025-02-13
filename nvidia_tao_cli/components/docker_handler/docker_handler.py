@@ -254,6 +254,41 @@ class DockerHandler(object):
                     docker_args[key] = value
         return docker_args
 
+    def get_docker_option_args_string(self, docker_options):
+        """Setting options for docker args.
+
+        Args:
+            docker_options (dict): Dictionary of docker config params.
+
+        Returns:
+            docker_args (string): Keyword args for docker options to be
+                defined for docker start.
+        """
+        
+        docker_args = []
+        for key, value in get_docker_option_args(docker_options).items():
+            if key == "user":
+                docker_args.append(f"--user {value}")
+            if key == "ports":
+                 assert isinstance(value, dict), (
+                    "Ports should be a dictionary of ports"
+                )
+                docker_args.append(" ".join([f"-p {a}:{b}" for a,b in value.items()]))
+            if key == "shm_size":
+                docker_args.append(f"--shm-size {value}")
+            
+            if key == "ulimits":
+                 assert isinstance(value, list), (
+                    "Ulimits should be a list of properties"
+                )
+                docker_args.append(" ".join([f"--ulimits {ulimit.name}={ulimit.hard}" for ulimit in value.items()]))
+            if key == "privileged":
+                docker_args.append(f"--privileged")
+            if key == "network":
+                docker_args.append(f"--network {value}")
+        # tty is taken care of separately
+        return " ".join(docker_args)
+
     def start_container(self, volumes, env_vars, docker_options=None):
         """This will create a docker container."""
         # Getting user limits for the docker.
@@ -371,13 +406,8 @@ class DockerHandler(object):
             f"{volume_args}",
             f"{env_args}",
         ]
-        options = []
-        for option, value in docker_options.items():
-            if option == "privileged" and value:
-                options.append("--privileged")
-            if option == "shm_size":
-                options.append(f"--shm-size {value}")
-        docker_command.extend(options)
+        docker_args = get_docker_option_args_string(docker_options)
+        docker_command.append(docker_args)
 
         formatted_command = "{} {} {}".format(
             " ".join(docker_command),
